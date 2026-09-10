@@ -1,0 +1,32 @@
+# Secrets and local config
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Caches (enrichment API responses, local model artifacts)
+.cache/
+cache/
+
+# Model-call logs: prompts, responses, tokens, cost, latency
+logs/
+*.log
+
+# Raw Wazuh / SIEM exports — labeled set is tracked on purpose
+wazuh_exports/
+raw_alerts/
+*.ndjson
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# Keys
+*.pem
+*.key
