@@ -1,0 +1,984 @@
+[
+  {
+    "id": "gs-001",
+    "label": "true_positive",
+    "technique": "T1053.005",
+    "source": "Atomic T1053.005 #1 (schtasks.exe)",
+    "note": "Scheduled-task persistence via schtasks.exe; cmd shell spawned by an abnormal parent.",
+    "observed_utc": "2026-09-17T18:16:16.167+0000",
+    "alert": {
+      "timestamp": "2026-09-17T18:16:16.167+0000",
+      "rule": {
+        "level": 3,
+        "description": "Suspicious Windows cmd shell execution",
+        "id": "92032",
+        "mitre": {
+          "id": [
+            "T1087",
+            "T1059.003"
+          ],
+          "tactic": [
+            "Discovery",
+            "Execution"
+          ],
+          "technique": [
+            "Account Discovery",
+            "Windows Command Shell"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "sysmon",
+          "sysmon_eid1_detections",
+          "windows"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1789668976.36612792",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Sysmon",
+            "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+            "eventID": "1",
+            "version": "5",
+            "level": "4",
+            "task": "1",
+            "opcode": "0",
+            "keywords": "0x8000000000000000",
+            "systemTime": "2026-09-17T18:15:43.6152368Z",
+            "eventRecordID": "19254",
+            "processID": "3500",
+            "threadID": "4240",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"Process Create:\r\nRuleName: -\r\nUtcTime: 2026-09-17 18:15:43.349\r\nProcessGuid: {930195bf-2e4f-6aac-f30b-000000000a00}\r\nProcessId: 1180\r\nImage: C:\\Windows\\System32\\schtasks.exe\r\nFileVersion: 10.0.26100.6725 (WinBuild.160101.0800)\r\nDescription: Task Scheduler Configuration Tool\r\nProduct: Microsoft® Windows® Operating System\r\nCompany: Microsoft Corporation\r\nOriginalFileName: schtasks.exe\r\nCommandLine: schtasks  /create /tn \"T1053_005_OnLogon\" /sc onlogon /tr \"cmd.exe /c calc.exe\" \r\nCurrentDirectory: C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\\r\nUser: DETLAB\\Administrator\r\nLogonGuid: {930195bf-2299-6aac-e1c3-cf0100000000}\r\nLogonId: 0x1CFC3E1\r\nTerminalSessionId: 2\r\nIntegrityLevel: High\r\nHashes: MD5=0EB0E5987DADDBBCFAB61F46FC44ABE0,SHA256=B96AF3066F0B9DE8A460F77BAAE006C5372A266BE18C561DAA7C7AE8635D399D,IMPHASH=A7B2338D5533AE221C0EB231BBEC0787\r\nParentProcessGuid: {930195bf-2e4e-6aac-f10b-000000000a00}\r\nParentProcessId: 108\r\nParentImage: C:\\Windows\\System32\\cmd.exe\r\nParentCommandLine: \"cmd.exe\" /c schtasks /create /tn \"T1053_005_OnLogon\" /sc onlogon /tr \"cmd.exe /c calc.exe\" & schtasks /create /tn \"T1053_005_OnStartup\" /sc onstart /ru system /tr \"cmd.exe /c calc.exe\"\r\nParentUser: DETLAB\\Administrator\""
+          },
+          "eventdata": {
+            "utcTime": "2026-09-17 18:15:43.349",
+            "processGuid": "{930195bf-2e4f-6aac-f30b-000000000a00}",
+            "processId": "1180",
+            "image": "C:\\\\Windows\\\\System32\\\\schtasks.exe",
+            "fileVersion": "10.0.26100.6725 (WinBuild.160101.0800)",
+            "description": "Task Scheduler Configuration Tool",
+            "product": "Microsoft® Windows® Operating System",
+            "company": "Microsoft Corporation",
+            "originalFileName": "schtasks.exe",
+            "commandLine": "schtasks  /create /tn \\\"T1053_005_OnLogon\\\" /sc onlogon /tr \\\"cmd.exe /c calc.exe\\\"",
+            "currentDirectory": "C:\\\\Users\\\\ADMINI~1\\\\AppData\\\\Local\\\\Temp\\\\",
+            "user": "DETLAB\\\\Administrator",
+            "logonGuid": "{930195bf-2299-6aac-e1c3-cf0100000000}",
+            "logonId": "0x1cfc3e1",
+            "terminalSessionId": "2",
+            "integrityLevel": "High",
+            "hashes": "MD5=0EB0E5987DADDBBCFAB61F46FC44ABE0,SHA256=B96AF3066F0B9DE8A460F77BAAE006C5372A266BE18C561DAA7C7AE8635D399D,IMPHASH=A7B2338D5533AE221C0EB231BBEC0787",
+            "parentProcessGuid": "{930195bf-2e4e-6aac-f10b-000000000a00}",
+            "parentProcessId": "108",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\cmd.exe",
+            "parentCommandLine": "\\\"cmd.exe\\\" /c schtasks /create /tn \\\"T1053_005_OnLogon\\\" /sc onlogon /tr \\\"cmd.exe /c calc.exe\\\" &amp; schtasks /create /tn \\\"T1053_005_OnStartup\\\" /sc onstart /ru system /tr \\\"cmd.exe /c calc.exe\\\"",
+            "parentUser": "DETLAB\\\\Administrator"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-002",
+    "label": "true_positive",
+    "technique": "T1547.001",
+    "source": "Atomic T1547.001 #1 (reg.exe Run key)",
+    "note": "Run-key persistence written via reg.exe under HKCU CurrentVersion Run; user-level autostart. Matched pair with gs-009.",
+    "observed_utc": "2026-09-17T18:28:16.215+0000",
+    "alert": {
+      "timestamp": "2026-09-17T18:28:16.215+0000",
+      "rule": {
+        "level": 6,
+        "description": "Registry entry to be executed on next logon was modified using command line application reg.exe",
+        "id": "92302",
+        "mitre": {
+          "id": [
+            "T1547.001"
+          ],
+          "tactic": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "technique": [
+            "Registry Run Keys / Startup Folder"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "sysmon",
+          "sysmon_eid13_detections",
+          "windows"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1789669696.37084797",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Sysmon",
+            "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+            "eventID": "13",
+            "version": "2",
+            "level": "4",
+            "task": "13",
+            "opcode": "0",
+            "keywords": "0x8000000000000000",
+            "systemTime": "2026-09-17T18:27:44.1570271Z",
+            "eventRecordID": "19281",
+            "processID": "3500",
+            "threadID": "4240",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"Registry value set:\r\nRuleName: T1060,RunKey\r\nEventType: SetValue\r\nUtcTime: 2026-09-17 18:27:44.156\r\nProcessGuid: {930195bf-3120-6aac-120c-000000000a00}\r\nProcessId: 5640\r\nImage: C:\\WINDOWS\\system32\\reg.exe\r\nTargetObject: HKU\\S-1-5-21-4094103578-1236301052-166353858-500\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\Atomic Red Team\r\nDetails: C:\\Path\\AtomicRedTeam.exe\r\nUser: DETLAB\\Administrator\""
+          },
+          "eventdata": {
+            "ruleName": "T1060,RunKey",
+            "eventType": "SetValue",
+            "utcTime": "2026-09-17 18:27:44.156",
+            "processGuid": "{930195bf-3120-6aac-120c-000000000a00}",
+            "processId": "5640",
+            "image": "C:\\\\WINDOWS\\\\system32\\\\reg.exe",
+            "targetObject": "HKU\\\\S-1-5-21-4094103578-1236301052-166353858-500\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\Atomic Red Team",
+            "details": "C:\\\\Path\\\\AtomicRedTeam.exe",
+            "user": "DETLAB\\\\Administrator"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-003",
+    "label": "true_positive",
+    "technique": "T1059.001",
+    "source": "manual powershell -EncodedCommand",
+    "note": "Base64-encoded PowerShell command executed; obfuscated execution.",
+    "observed_utc": "2026-09-18T19:20:59.792+0000",
+    "alert": {
+      "timestamp": "2026-09-18T19:20:59.792+0000",
+      "rule": {
+        "level": 12,
+        "description": "Powershell.exe spawned a powershell process which executed a base64 encoded command",
+        "id": "92057",
+        "mitre": {
+          "id": [
+            "T1059.001"
+          ],
+          "tactic": [
+            "Execution"
+          ],
+          "technique": [
+            "PowerShell"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": true,
+        "groups": [
+          "sysmon",
+          "sysmon_eid1_detections",
+          "windows"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1789759259.39022535",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Sysmon",
+            "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+            "eventID": "1",
+            "version": "5",
+            "level": "4",
+            "task": "1",
+            "opcode": "0",
+            "keywords": "0x8000000000000000",
+            "systemTime": "2026-09-18T19:20:58.5918489Z",
+            "eventRecordID": "20814",
+            "processID": "3500",
+            "threadID": "4240",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"Process Create:\r\nRuleName: -\r\nUtcTime: 2026-09-18 19:20:58.567\r\nProcessGuid: {930195bf-8f1a-6aad-9911-000000000a00}\r\nProcessId: 6140\r\nImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nFileVersion: 10.0.26100.9278 (WinBuild.160101.0800)\r\nDescription: Windows PowerShell\r\nProduct: Microsoft® Windows® Operating System\r\nCompany: Microsoft Corporation\r\nOriginalFileName: PowerShell.EXE\r\nCommandLine: \"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAgACcASABlAGwAbABvACAAZgByAG8AbQAgAGUAbgBjAG8AZABlAGQAIABjAG8AbQBtAGEAbgBkACcA\r\nCurrentDirectory: C:\\WINDOWS\\system32\\\r\nUser: DETLAB\\Administrator\r\nLogonGuid: {930195bf-2299-6aac-e1c3-cf0100000000}\r\nLogonId: 0x1CFC3E1\r\nTerminalSessionId: 2\r\nIntegrityLevel: High\r\nHashes: MD5=61F649A6FDC374A6BF36C860519E017C,SHA256=8BB6FA8C283B4D92120B1EF249A9B311B0F804D4CABBE9981159976C8BE76A5E,IMPHASH=2F87CE4617F593D7148B739BBF06D059\r\nParentProcessGuid: {930195bf-2815-6aac-d20b-000000000a00}\r\nParentProcessId: 9848\r\nParentImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nParentCommandLine: \"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \r\nParentUser: DETLAB\\Administrator\""
+          },
+          "eventdata": {
+            "utcTime": "2026-09-18 19:20:58.567",
+            "processGuid": "{930195bf-8f1a-6aad-9911-000000000a00}",
+            "processId": "6140",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "fileVersion": "10.0.26100.9278 (WinBuild.160101.0800)",
+            "description": "Windows PowerShell",
+            "product": "Microsoft® Windows® Operating System",
+            "company": "Microsoft Corporation",
+            "originalFileName": "PowerShell.EXE",
+            "commandLine": "\\\"C:\\\\WINDOWS\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\\" -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAgACcASABlAGwAbABvACAAZgByAG8AbQAgAGUAbgBjAG8AZABlAGQAIABjAG8AbQBtAGEAbgBkACcA",
+            "currentDirectory": "C:\\\\WINDOWS\\\\system32\\\\",
+            "user": "DETLAB\\\\Administrator",
+            "logonGuid": "{930195bf-2299-6aac-e1c3-cf0100000000}",
+            "logonId": "0x1cfc3e1",
+            "terminalSessionId": "2",
+            "integrityLevel": "High",
+            "hashes": "MD5=61F649A6FDC374A6BF36C860519E017C,SHA256=8BB6FA8C283B4D92120B1EF249A9B311B0F804D4CABBE9981159976C8BE76A5E,IMPHASH=2F87CE4617F593D7148B739BBF06D059",
+            "parentProcessGuid": "{930195bf-2815-6aac-d20b-000000000a00}",
+            "parentProcessId": "9848",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "parentCommandLine": "\\\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\\"",
+            "parentUser": "DETLAB\\\\Administrator"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-004",
+    "label": "true_positive",
+    "technique": "T1003.002",
+    "source": "reg save HKLM\\SAM + HKLM\\SYSTEM",
+    "note": "SAM registry hive dumped via reg save; credential access. LSASS/comsvcs route was blocked by PPL + Defender, so SAM hive extraction used instead.",
+    "observed_utc": "2026-10-02T18:43:08.384+0000",
+    "alert": {
+      "timestamp": "2026-10-02T18:43:08.384+0000",
+      "rule": {
+        "level": 14,
+        "description": "Reg.exe used to dump SAM hive",
+        "id": "92026",
+        "mitre": {
+          "id": [
+            "T1003.002"
+          ],
+          "tactic": [
+            "Credential Access"
+          ],
+          "technique": [
+            "Security Account Manager"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": true,
+        "groups": [
+          "sysmon",
+          "sysmon_eid1_detections",
+          "windows"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1790966588.39485388",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Sysmon",
+            "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+            "eventID": "1",
+            "version": "5",
+            "level": "4",
+            "task": "1",
+            "opcode": "0",
+            "keywords": "0x8000000000000000",
+            "systemTime": "2026-10-02T18:43:07.3439224Z",
+            "eventRecordID": "21134",
+            "processID": "3500",
+            "threadID": "4240",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"Process Create:\r\nRuleName: -\r\nUtcTime: 2026-10-02 18:43:07.342\r\nProcessGuid: {930195bf-fb3b-6abf-f60e-000000000a00}\r\nProcessId: 12252\r\nImage: C:\\Windows\\System32\\reg.exe\r\nFileVersion: 10.0.26100.5074 (WinBuild.160101.0800)\r\nDescription: Registry Console Tool\r\nProduct: Microsoft® Windows® Operating System\r\nCompany: Microsoft Corporation\r\nOriginalFileName: reg.exe\r\nCommandLine: \"C:\\WINDOWS\\system32\\reg.exe\" save HKLM\\SAM C:\\Windows\\Temp\\sam.save\r\nCurrentDirectory: C:\\WINDOWS\\system32\\\r\nUser: DETLAB\\Administrator\r\nLogonGuid: {930195bf-2299-6aac-e1c3-cf0100000000}\r\nLogonId: 0x1CFC3E1\r\nTerminalSessionId: 2\r\nIntegrityLevel: High\r\nHashes: MD5=F6E3559DDDDCCC843A12CFD50178C554,SHA256=EF37663B44AC66920C6F33694DEEA01ACB78AE3F3012884819373FA04C3EB5F0,IMPHASH=2DC6AE94704E0DBEAFC5A2BB00BD87F0\r\nParentProcessGuid: {930195bf-ca2e-6abf-c10d-000000000a00}\r\nParentProcessId: 6792\r\nParentImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nParentCommandLine: \"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \r\nParentUser: DETLAB\\Administrator\""
+          },
+          "eventdata": {
+            "utcTime": "2026-10-02 18:43:07.342",
+            "processGuid": "{930195bf-fb3b-6abf-f60e-000000000a00}",
+            "processId": "12252",
+            "image": "C:\\\\Windows\\\\System32\\\\reg.exe",
+            "fileVersion": "10.0.26100.5074 (WinBuild.160101.0800)",
+            "description": "Registry Console Tool",
+            "product": "Microsoft® Windows® Operating System",
+            "company": "Microsoft Corporation",
+            "originalFileName": "reg.exe",
+            "commandLine": "\\\"C:\\\\WINDOWS\\\\system32\\\\reg.exe\\\" save HKLM\\\\SAM C:\\\\Windows\\\\Temp\\\\sam.save",
+            "currentDirectory": "C:\\\\WINDOWS\\\\system32\\\\",
+            "user": "DETLAB\\\\Administrator",
+            "logonGuid": "{930195bf-2299-6aac-e1c3-cf0100000000}",
+            "logonId": "0x1cfc3e1",
+            "terminalSessionId": "2",
+            "integrityLevel": "High",
+            "hashes": "MD5=F6E3559DDDDCCC843A12CFD50178C554,SHA256=EF37663B44AC66920C6F33694DEEA01ACB78AE3F3012884819373FA04C3EB5F0,IMPHASH=2DC6AE94704E0DBEAFC5A2BB00BD87F0",
+            "parentProcessGuid": "{930195bf-ca2e-6abf-c10d-000000000a00}",
+            "parentProcessId": "6792",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "parentCommandLine": "\\\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\\"",
+            "parentUser": "DETLAB\\\\Administrator"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-005",
+    "label": "true_positive",
+    "technique": "T1087.001",
+    "source": "net user; net localgroup administrators",
+    "note": "Local account/group enumeration; discovery. Rule 92031/92033 is very noisy (fires dozens of times/day on benign net use per archive). Matched pair with gs-011.",
+    "observed_utc": "2026-10-02T18:50:21.446+0000",
+    "alert": {
+      "timestamp": "2026-10-02T18:50:21.446+0000",
+      "rule": {
+        "level": 3,
+        "description": "Discovery activity spawned via powershell execution",
+        "id": "92033",
+        "mitre": {
+          "id": [
+            "T1087",
+            "T1059.001"
+          ],
+          "tactic": [
+            "Discovery",
+            "Execution"
+          ],
+          "technique": [
+            "Account Discovery",
+            "PowerShell"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "sysmon",
+          "sysmon_eid1_detections",
+          "windows"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1790967021.39761696",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Sysmon",
+            "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+            "eventID": "1",
+            "version": "5",
+            "level": "4",
+            "task": "1",
+            "opcode": "0",
+            "keywords": "0x8000000000000000",
+            "systemTime": "2026-10-02T18:50:20.4078305Z",
+            "eventRecordID": "21149",
+            "processID": "3500",
+            "threadID": "4240",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"Process Create:\r\nRuleName: -\r\nUtcTime: 2026-10-02 18:50:20.395\r\nProcessGuid: {930195bf-fcec-6abf-070f-000000000a00}\r\nProcessId: 12180\r\nImage: C:\\Windows\\System32\\net.exe\r\nFileVersion: 10.0.26100.7019 (WinBuild.160101.0800)\r\nDescription: Net Command\r\nProduct: Microsoft® Windows® Operating System\r\nCompany: Microsoft Corporation\r\nOriginalFileName: net.exe\r\nCommandLine: \"C:\\WINDOWS\\system32\\net.exe\" user\r\nCurrentDirectory: C:\\WINDOWS\\system32\\\r\nUser: DETLAB\\Administrator\r\nLogonGuid: {930195bf-2299-6aac-e1c3-cf0100000000}\r\nLogonId: 0x1CFC3E1\r\nTerminalSessionId: 2\r\nIntegrityLevel: High\r\nHashes: MD5=8A1E71312BD2AAE202652113049CDBD1,SHA256=BB3E638C8B5B6EF80847E364AEEF2796CAD25D3539CF9B41D3820FA48943E777,IMPHASH=EF46B86C2346DA0A991DE4B78AAF4E75\r\nParentProcessGuid: {930195bf-ca2e-6abf-c10d-000000000a00}\r\nParentProcessId: 6792\r\nParentImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nParentCommandLine: \"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \r\nParentUser: DETLAB\\Administrator\""
+          },
+          "eventdata": {
+            "utcTime": "2026-10-02 18:50:20.395",
+            "processGuid": "{930195bf-fcec-6abf-070f-000000000a00}",
+            "processId": "12180",
+            "image": "C:\\\\Windows\\\\System32\\\\net.exe",
+            "fileVersion": "10.0.26100.7019 (WinBuild.160101.0800)",
+            "description": "Net Command",
+            "product": "Microsoft® Windows® Operating System",
+            "company": "Microsoft Corporation",
+            "originalFileName": "net.exe",
+            "commandLine": "\\\"C:\\\\WINDOWS\\\\system32\\\\net.exe\\\" user",
+            "currentDirectory": "C:\\\\WINDOWS\\\\system32\\\\",
+            "user": "DETLAB\\\\Administrator",
+            "logonGuid": "{930195bf-2299-6aac-e1c3-cf0100000000}",
+            "logonId": "0x1cfc3e1",
+            "terminalSessionId": "2",
+            "integrityLevel": "High",
+            "hashes": "MD5=8A1E71312BD2AAE202652113049CDBD1,SHA256=BB3E638C8B5B6EF80847E364AEEF2796CAD25D3539CF9B41D3820FA48943E777,IMPHASH=EF46B86C2346DA0A991DE4B78AAF4E75",
+            "parentProcessGuid": "{930195bf-ca2e-6abf-c10d-000000000a00}",
+            "parentProcessId": "6792",
+            "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "parentCommandLine": "\\\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\\"",
+            "parentUser": "DETLAB\\\\Administrator"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-006",
+    "label": "true_positive",
+    "technique": "T1070.001",
+    "source": "wevtutil cl Security",
+    "note": "Windows Security event log cleared; defense evasion. Detected via the 1102 log-cleared event, independent of the clearing tool.",
+    "observed_utc": "2026-10-02T18:56:34.717+0000",
+    "alert": {
+      "timestamp": "2026-10-02T18:56:34.717+0000",
+      "rule": {
+        "level": 5,
+        "description": "The audit log was cleared",
+        "id": "63103",
+        "mitre": {
+          "id": [
+            "T1070"
+          ],
+          "tactic": [
+            "Defense Evasion"
+          ],
+          "technique": [
+            "Indicator Removal"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "windows",
+          "windows_logs",
+          "log_clearing_auditlog"
+        ],
+        "gpg13": [
+          "10.1"
+        ],
+        "gdpr": [
+          "II_5.1.f",
+          "IV_30.1.g"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1790967394.39985178",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Eventlog",
+            "providerGuid": "{fc65ddd8-d6ef-4962-83d5-6e5cfe9ce148}",
+            "eventID": "1102",
+            "version": "1",
+            "level": "4",
+            "task": "104",
+            "opcode": "0",
+            "keywords": "0x4020000000000000",
+            "systemTime": "2026-10-02T18:56:34.6723987Z",
+            "eventRecordID": "36861",
+            "processID": "1668",
+            "threadID": "4528",
+            "channel": "Security",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"The audit log was cleared.\r\nSubject:\r\n\tSecurity ID:\tS-1-5-21-4094103578-1236301052-166353858-500\r\n\tAccount Name:\tAdministrator\r\n\tDomain Name:\tDETLAB\r\n\tLogon ID:\t0x1CFC3E1\""
+          },
+          "logFileCleared": {
+            "subjectUserSid": "S-1-5-21-4094103578-1236301052-166353858-500",
+            "subjectUserName": "Administrator",
+            "subjectDomainName": "DETLAB",
+            "subjectLogonId": "0x1cfc3e1",
+            "clientProcessId": "10480",
+            "clientProcessStartKey": "2814749767110422"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-007",
+    "label": "true_positive",
+    "technique": "T1548.002",
+    "source": "fodhelper ms-settings hijack",
+    "note": "UAC bypass via fodhelper auto-elevate + ms-settings registry hijack; privilege escalation. Bypass succeeded, then Defender terminated the chain.",
+    "observed_utc": "2026-10-02T18:59:15.321+0000",
+    "alert": {
+      "timestamp": "2026-10-02T18:59:15.321+0000",
+      "rule": {
+        "level": 12,
+        "description": "Command interpreter added to registry key associated to UAC bypass by auto-elevated processes",
+        "id": "92305",
+        "mitre": {
+          "id": [
+            "T1548.002",
+            "T1112"
+          ],
+          "tactic": [
+            "Privilege Escalation",
+            "Defense Evasion"
+          ],
+          "technique": [
+            "Bypass User Account Control",
+            "Modify Registry"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": true,
+        "groups": [
+          "sysmon",
+          "sysmon_eid13_detections",
+          "windows"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1790967555.40101183",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Sysmon",
+            "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+            "eventID": "13",
+            "version": "2",
+            "level": "4",
+            "task": "13",
+            "opcode": "0",
+            "keywords": "0x8000000000000000",
+            "systemTime": "2026-10-02T18:59:14.1781293Z",
+            "eventRecordID": "21168",
+            "processID": "3500",
+            "threadID": "4240",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"Registry value set:\r\nRuleName: T1042\r\nEventType: SetValue\r\nUtcTime: 2026-10-02 18:59:14.177\r\nProcessGuid: {930195bf-ca2e-6abf-c10d-000000000a00}\r\nProcessId: 6792\r\nImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nTargetObject: HKU\\S-1-5-21-4094103578-1236301052-166353858-500_Classes\\ms-settings\\Shell\\Open\\command\\(Default)\r\nDetails: cmd.exe /c calc.exe\r\nUser: DETLAB\\Administrator\""
+          },
+          "eventdata": {
+            "ruleName": "T1042",
+            "eventType": "SetValue",
+            "utcTime": "2026-10-02 18:59:14.177",
+            "processGuid": "{930195bf-ca2e-6abf-c10d-000000000a00}",
+            "processId": "6792",
+            "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+            "targetObject": "HKU\\\\S-1-5-21-4094103578-1236301052-166353858-500_Classes\\\\ms-settings\\\\Shell\\\\Open\\\\command\\\\(Default)",
+            "details": "cmd.exe /c calc.exe",
+            "user": "DETLAB\\\\Administrator"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-008",
+    "label": "true_positive",
+    "technique": "T1053.005",
+    "source": "schtasks /s WIN-IU1D5B3TEM3 (remote, SYSTEM)",
+    "note": "Remote scheduled task created on the DC as SYSTEM from det-lab-ws; lateral movement. Detection surfaced at the auth layer (remote NTLM logon), not task registration. Alert carried by agent det-lab-dc.",
+    "observed_utc": "2026-10-02T19:25:48.822+0000",
+    "alert": {
+      "timestamp": "2026-10-02T19:25:48.822+0000",
+      "rule": {
+        "level": 6,
+        "description": "Successful Remote Logon Detected - User:\\Administrator - NTLM authentication, possible pass-the-hash attack - Possible RDP connection. Verify that DET-LAB-WS is allowed to perform RDP connections",
+        "id": "92657",
+        "mitre": {
+          "id": [
+            "T1550.002",
+            "T1078.002",
+            "T1021.001"
+          ],
+          "tactic": [
+            "Defense Evasion",
+            "Lateral Movement",
+            "Persistence",
+            "Privilege Escalation",
+            "Initial Access"
+          ],
+          "technique": [
+            "Pass the Hash",
+            "Domain Accounts",
+            "Remote Desktop Protocol"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "win_evt_channel",
+          "windows",
+          "authentication_success"
+        ],
+        "pci_dss": [
+          "10.2.5"
+        ],
+        "gpg13": [
+          "7.1",
+          "7.2"
+        ],
+        "gdpr": [
+          "IV_32.2"
+        ],
+        "hipaa": [
+          "164.312.b"
+        ],
+        "nist_800_53": [
+          "AU.14",
+          "AC.7"
+        ],
+        "tsc": [
+          "CC6.8",
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "agent": {
+        "id": "014",
+        "name": "det-lab-dc",
+        "ip": "10.10.50.21"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1790969148.41059630",
+      "full_log": "{\"win\":{\"system\":{\"providerName\":\"Microsoft-Windows-Security-Auditing\",\"providerGuid\":\"{54849625-5478-4994-a5ba-3e3b0328c30d}\",\"eventID\":\"4624\",\"version\":\"2\",\"level\":\"0\",\"task\":\"12544\",\"opcode\":\"0\",\"keywords\":\"0x8020000000000000\",\"systemTime\":\"2026-10-02T19:25:47.7878171Z\",\"eventRecordID\":\"322180\",\"processID\":\"680\",\"threadID\":\"3628\",\"channel\":\"Security\",\"computer\":\"WIN-IU1D5B3TEM3.detlab.local\",\"severityValue\":\"AUDIT_SUCCESS\",\"message\":\"\\\"An account was successfully logged on.\\r\\n\\r\\nSubject:\\r\\n\\tSecurity ID:\\t\\tS-1-0-0\\r\\n\\tAccount Name:\\t\\t-\\r\\n\\tAccount Domain:\\t\\t-\\r\\n\\tLogon ID:\\t\\t0x0\\r\\n\\r\\nLogon Information:\\r\\n\\tLogon Type:\\t\\t3\\r\\n\\tRestricted Admin Mode:\\t-\\r\\n\\tVirtual Account:\\t\\tNo\\r\\n\\tElevated Token:\\t\\tYes\\r\\n\\r\\nImpersonation Level:\\t\\tImpersonation\\r\\n\\r\\nNew Logon:\\r\\n\\tSecurity ID:\\t\\tS-1-5-21-4094103578-1236301052-166353858-500\\r\\n\\tAccount Name:\\t\\tAdministrator\\r\\n\\tAccount Domain:\\t\\tDETLAB\\r\\n\\tLogon ID:\\t\\t0x148D34EE\\r\\n\\tLinked Logon ID:\\t\\t0x0\\r\\n\\tNetwork Account Name:\\t-\\r\\n\\tNetwork Account Domain:\\t-\\r\\n\\tLogon GUID:\\t\\t{00000000-0000-0000-0000-000000000000}\\r\\n\\r\\nProcess Information:\\r\\n\\tProcess ID:\\t\\t0x0\\r\\n\\tProcess Name:\\t\\t-\\r\\n\\r\\nNetwork Information:\\r\\n\\tWorkstation Name:\\tDET-LAB-WS\\r\\n\\tSource Network Address:\\t10.10.50.22\\r\\n\\tSource Port:\\t\\t64992\\r\\n\\r\\nDetailed Authentication Information:\\r\\n\\tLogon Process:\\t\\tNtLmSsp \\r\\n\\tAuthentication Package:\\tNTLM\\r\\n\\tTransited Services:\\t-\\r\\n\\tPackage Name (NTLM only):\\tNTLM V2\\r\\n\\tKey Length:\\t\\t128\\r\\n\\r\\nThis event is generated when a logon session is created. It is generated on the computer that was accessed.\\r\\n\\r\\nThe subject fields indicate the account on the local system which requested the logon. This is most commonly a service such as the Server service, or a local process such as Winlogon.exe or Services.exe.\\r\\n\\r\\nThe logon type field indicates the kind of logon that occurred. The most common types are 2 (interactive) and 3 (network).\\r\\n\\r\\nThe New Logon fields indicate the account for whom the new logon was created, i.e. the account that was logged on.\\r\\n\\r\\nThe network fields indicate where a remote logon request originated. Workstation name is not always available and may be left blank in some cases.\\r\\n\\r\\nThe impersonation level field indicates the extent to which a process in the logon session can impersonate.\\r\\n\\r\\nThe authentication information fields provide detailed information about this specific logon request.\\r\\n\\t- Logon GUID is a unique identifier that can be used to correlate this event with a KDC event.\\r\\n\\t- Transited services indicate which intermediate services have participated in this logon request.\\r\\n\\t- Package name indicates which sub-protocol was used among the NTLM protocols.\\r\\n\\t- Key length indicates the length of the generated session key. This will be 0 if no session key was requested.\\\"\"},\"eventdata\":{\"subjectUserSid\":\"S-1-0-0\",\"subjectLogonId\":\"0x0\",\"targetUserSid\":\"S-1-5-21-4094103578-1236301052-166353858-500\",\"targetUserName\":\"Administrator\",\"targetDomainName\":\"DETLAB\",\"targetLogonId\":\"0x148d34ee\",\"logonType\":\"3\",\"logonProcessName\":\"NtLmSsp\",\"authenticationPackageName\":\"NTLM\",\"workstationName\":\"DET-LAB-WS\",\"logonGuid\":\"{00000000-0000-0000-0000-000000000000}\",\"lmPackageName\":\"NTLM V2\",\"keyLength\":\"128\",\"processId\":\"0x0\",\"ipAddress\":\"10.10.50.22\",\"ipPort\":\"64992\",\"impersonationLevel\":\"%%1833\",\"virtualAccount\":\"%%1843\",\"targetLinkedLogonId\":\"0x0\",\"elevatedToken\":\"%%1842\"}}}",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Security-Auditing",
+            "providerGuid": "{54849625-5478-4994-a5ba-3e3b0328c30d}",
+            "eventID": "4624",
+            "version": "2",
+            "level": "0",
+            "task": "12544",
+            "opcode": "0",
+            "keywords": "0x8020000000000000",
+            "systemTime": "2026-10-02T19:25:47.7878171Z",
+            "eventRecordID": "322180",
+            "processID": "680",
+            "threadID": "3628",
+            "channel": "Security",
+            "computer": "WIN-IU1D5B3TEM3.detlab.local",
+            "severityValue": "AUDIT_SUCCESS",
+            "message": "\"An account was successfully logged on.\r\n\r\nSubject:\r\n\tSecurity ID:\t\tS-1-0-0\r\n\tAccount Name:\t\t-\r\n\tAccount Domain:\t\t-\r\n\tLogon ID:\t\t0x0\r\n\r\nLogon Information:\r\n\tLogon Type:\t\t3\r\n\tRestricted Admin Mode:\t-\r\n\tVirtual Account:\t\tNo\r\n\tElevated Token:\t\tYes\r\n\r\nImpersonation Level:\t\tImpersonation\r\n\r\nNew Logon:\r\n\tSecurity ID:\t\tS-1-5-21-4094103578-1236301052-166353858-500\r\n\tAccount Name:\t\tAdministrator\r\n\tAccount Domain:\t\tDETLAB\r\n\tLogon ID:\t\t0x148D34EE\r\n\tLinked Logon ID:\t\t0x0\r\n\tNetwork Account Name:\t-\r\n\tNetwork Account Domain:\t-\r\n\tLogon GUID:\t\t{00000000-0000-0000-0000-000000000000}\r\n\r\nProcess Information:\r\n\tProcess ID:\t\t0x0\r\n\tProcess Name:\t\t-\r\n\r\nNetwork Information:\r\n\tWorkstation Name:\tDET-LAB-WS\r\n\tSource Network Address:\t10.10.50.22\r\n\tSource Port:\t\t64992\r\n\r\nDetailed Authentication Information:\r\n\tLogon Process:\t\tNtLmSsp \r\n\tAuthentication Package:\tNTLM\r\n\tTransited Services:\t-\r\n\tPackage Name (NTLM only):\tNTLM V2\r\n\tKey Length:\t\t128\r\n\r\nThis event is generated when a logon session is created. It is generated on the computer that was accessed.\r\n\r\nThe subject fields indicate the account on the local system which requested the logon. This is most commonly a service such as the Server service, or a local process such as Winlogon.exe or Services.exe.\r\n\r\nThe logon type field indicates the kind of logon that occurred. The most common types are 2 (interactive) and 3 (network).\r\n\r\nThe New Logon fields indicate the account for whom the new logon was created, i.e. the account that was logged on.\r\n\r\nThe network fields indicate where a remote logon request originated. Workstation name is not always available and may be left blank in some cases.\r\n\r\nThe impersonation level field indicates the extent to which a process in the logon session can impersonate.\r\n\r\nThe authentication information fields provide detailed information about this specific logon request.\r\n\t- Logon GUID is a unique identifier that can be used to correlate this event with a KDC event.\r\n\t- Transited services indicate which intermediate services have participated in this logon request.\r\n\t- Package name indicates which sub-protocol was used among the NTLM protocols.\r\n\t- Key length indicates the length of the generated session key. This will be 0 if no session key was requested.\""
+          },
+          "eventdata": {
+            "subjectUserSid": "S-1-0-0",
+            "subjectLogonId": "0x0",
+            "targetUserSid": "S-1-5-21-4094103578-1236301052-166353858-500",
+            "targetUserName": "Administrator",
+            "targetDomainName": "DETLAB",
+            "targetLogonId": "0x148d34ee",
+            "logonType": "3",
+            "logonProcessName": "NtLmSsp",
+            "authenticationPackageName": "NTLM",
+            "workstationName": "DET-LAB-WS",
+            "logonGuid": "{00000000-0000-0000-0000-000000000000}",
+            "lmPackageName": "NTLM V2",
+            "keyLength": "128",
+            "processId": "0x0",
+            "ipAddress": "10.10.50.22",
+            "ipPort": "64992",
+            "impersonationLevel": "%%1833",
+            "virtualAccount": "%%1843",
+            "targetLinkedLogonId": "0x0",
+            "elevatedToken": "%%1842"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-009",
+    "label": "false_positive",
+    "technique": null,
+    "source": "reg add ...\\Run LabUpdater (benign admin)",
+    "note": "App-style run-key write by a normal admin; benign. IDENTICAL alert (92302) to gs-002 — only context distinguishes them. Core eval pair.",
+    "observed_utc": "2026-10-02T19:52:32.812+0000",
+    "alert": {
+      "timestamp": "2026-10-02T19:52:32.812+0000",
+      "rule": {
+        "level": 6,
+        "description": "Registry entry to be executed on next logon was modified using command line application reg.exe",
+        "id": "92302",
+        "mitre": {
+          "id": [
+            "T1547.001"
+          ],
+          "tactic": [
+            "Persistence",
+            "Privilege Escalation"
+          ],
+          "technique": [
+            "Registry Run Keys / Startup Folder"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "sysmon",
+          "sysmon_eid13_detections",
+          "windows"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1790970752.42076886",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Sysmon",
+            "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+            "eventID": "13",
+            "version": "2",
+            "level": "4",
+            "task": "13",
+            "opcode": "0",
+            "keywords": "0x8000000000000000",
+            "systemTime": "2026-10-02T19:52:31.7826996Z",
+            "eventRecordID": "21295",
+            "processID": "3500",
+            "threadID": "4240",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"Registry value set:\r\nRuleName: T1060,RunKey\r\nEventType: SetValue\r\nUtcTime: 2026-10-02 19:52:31.780\r\nProcessGuid: {930195bf-0b7f-6ac0-950f-000000000a00}\r\nProcessId: 5300\r\nImage: C:\\WINDOWS\\system32\\reg.exe\r\nTargetObject: HKU\\S-1-5-21-4094103578-1236301052-166353858-500\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\LabUpdater\r\nDetails: C:\\Program Files\\LabApp\\updater.exe\r\nUser: DETLAB\\Administrator\""
+          },
+          "eventdata": {
+            "ruleName": "T1060,RunKey",
+            "eventType": "SetValue",
+            "utcTime": "2026-10-02 19:52:31.780",
+            "processGuid": "{930195bf-0b7f-6ac0-950f-000000000a00}",
+            "processId": "5300",
+            "image": "C:\\\\WINDOWS\\\\system32\\\\reg.exe",
+            "targetObject": "HKU\\\\S-1-5-21-4094103578-1236301052-166353858-500\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\LabUpdater",
+            "details": "C:\\\\Program Files\\\\LabApp\\\\updater.exe",
+            "user": "DETLAB\\\\Administrator"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-010",
+    "label": "false_positive",
+    "technique": null,
+    "source": "winget install 7zip.7zip (7-Zip 26.03)",
+    "note": "Benign software install via winget; installer/service activity superficially resembles persistence/execution.",
+    "observed_utc": "2026-10-02T20:02:32.717+0000",
+    "alert": {
+      "timestamp": "2026-10-02T20:02:32.717+0000",
+      "rule": {
+        "level": 3,
+        "description": "Application installed Product: 7-Zip 26.03 (x64 edition) -- Installation completed successfully..",
+        "id": "60612",
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "windows",
+          "windows_application"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1790971352.42485952",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "MsiInstaller",
+            "eventID": "11707",
+            "version": "0",
+            "level": "4",
+            "task": "0",
+            "opcode": "0",
+            "keywords": "0x80000000000000",
+            "systemTime": "2026-10-02T20:02:32.6125723Z",
+            "eventRecordID": "2125",
+            "processID": "2524",
+            "threadID": "0",
+            "channel": "Application",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"Product: 7-Zip 26.03 (x64 edition) -- Installation completed successfully.\""
+          },
+          "eventdata": {
+            "binary": "7B32333137304636392D343043312D323730322D323630332D3030303030313030303030307D",
+            "data": "Product: 7-Zip 26.03 (x64 edition) -- Installation completed successfully."
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  },
+  {
+    "id": "gs-011",
+    "label": "false_positive",
+    "technique": null,
+    "source": "net user (benign admin enumeration)",
+    "note": "Benign net user enumeration by an admin; benign. IDENTICAL rule (92031) to gs-005; archive shows this rule firing dozens of times/day on benign activity. Core eval pair.",
+    "observed_utc": "2026-10-02T15:04:17.737+0000",
+    "alert": {
+      "timestamp": "2026-10-02T15:04:17.737+0000",
+      "rule": {
+        "level": 3,
+        "description": "Discovery activity executed",
+        "id": "92031",
+        "mitre": {
+          "id": [
+            "T1087"
+          ],
+          "tactic": [
+            "Discovery"
+          ],
+          "technique": [
+            "Account Discovery"
+          ]
+        },
+        "firedtimes": 1,
+        "mail": false,
+        "groups": [
+          "sysmon",
+          "sysmon_eid1_detections",
+          "windows"
+        ]
+      },
+      "agent": {
+        "id": "013",
+        "name": "det-lab-ws",
+        "ip": "10.10.50.22"
+      },
+      "manager": {
+        "name": "wazuh"
+      },
+      "id": "1790953457.30546158",
+      "decoder": {
+        "name": "windows_eventchannel"
+      },
+      "data": {
+        "win": {
+          "system": {
+            "providerName": "Microsoft-Windows-Sysmon",
+            "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+            "eventID": "1",
+            "version": "5",
+            "level": "4",
+            "task": "1",
+            "opcode": "0",
+            "keywords": "0x8000000000000000",
+            "systemTime": "2026-10-02T15:04:16.4505827Z",
+            "eventRecordID": "19212",
+            "processID": "3500",
+            "threadID": "4240",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer": "det-lab-ws.detlab.local",
+            "severityValue": "INFORMATION",
+            "message": "\"Process Create:\r\nRuleName: -\r\nUtcTime: 2026-10-02 15:04:16.446\r\nProcessGuid: {930195bf-c7f0-6abf-970c-000000000a00}\r\nProcessId: 7068\r\nImage: C:\\Windows\\SysWOW64\\net.exe\r\nFileVersion: 10.0.26100.7019 (WinBuild.160101.0800)\r\nDescription: Net Command\r\nProduct: Microsoft® Windows® Operating System\r\nCompany: Microsoft Corporation\r\nOriginalFileName: net.exe\r\nCommandLine: net user\r\nCurrentDirectory: C:\\Program Files (x86)\\ossec-agent\\\r\nUser: NT AUTHORITY\\SYSTEM\r\nLogonGuid: {930195bf-75f5-6aa8-e703-000000000000}\r\nLogonId: 0x3E7\r\nTerminalSessionId: 0\r\nIntegrityLevel: System\r\nHashes: MD5=D4E7A009D386934803364C2D69ED465B,SHA256=E7A3A04DB13F7D5E65DB45DBED99B80C9AD9907BEEBA3416E2E5428E1EFB791E,IMPHASH=559D4014B9861D37E317DED7FD6BC691\r\nParentProcessGuid: {930195bf-23e4-6aac-1f0b-000000000a00}\r\nParentProcessId: 8892\r\nParentImage: C:\\Program Files (x86)\\ossec-agent\\wazuh-agent.exe\r\nParentCommandLine: \"C:\\Program Files (x86)\\ossec-agent\\wazuh-agent.exe\"\r\nParentUser: NT AUTHORITY\\SYSTEM\""
+          },
+          "eventdata": {
+            "utcTime": "2026-10-02 15:04:16.446",
+            "processGuid": "{930195bf-c7f0-6abf-970c-000000000a00}",
+            "processId": "7068",
+            "image": "C:\\\\Windows\\\\SysWOW64\\\\net.exe",
+            "fileVersion": "10.0.26100.7019 (WinBuild.160101.0800)",
+            "description": "Net Command",
+            "product": "Microsoft® Windows® Operating System",
+            "company": "Microsoft Corporation",
+            "originalFileName": "net.exe",
+            "commandLine": "net user",
+            "currentDirectory": "C:\\\\Program Files (x86)\\\\ossec-agent\\\\",
+            "user": "NT AUTHORITY\\\\SYSTEM",
+            "logonGuid": "{930195bf-75f5-6aa8-e703-000000000000}",
+            "logonId": "0x3e7",
+            "terminalSessionId": "0",
+            "integrityLevel": "System",
+            "hashes": "MD5=D4E7A009D386934803364C2D69ED465B,SHA256=E7A3A04DB13F7D5E65DB45DBED99B80C9AD9907BEEBA3416E2E5428E1EFB791E,IMPHASH=559D4014B9861D37E317DED7FD6BC691",
+            "parentProcessGuid": "{930195bf-23e4-6aac-1f0b-000000000a00}",
+            "parentProcessId": "8892",
+            "parentImage": "C:\\\\Program Files (x86)\\\\ossec-agent\\\\wazuh-agent.exe",
+            "parentCommandLine": "\\\"C:\\\\Program Files (x86)\\\\ossec-agent\\\\wazuh-agent.exe\\\"",
+            "parentUser": "NT AUTHORITY\\\\SYSTEM"
+          }
+        }
+      },
+      "location": "EventChannel"
+    }
+  }
+]
